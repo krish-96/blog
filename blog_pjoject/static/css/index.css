@@ -1,0 +1,52 @@
+nav{
+    color:#fff;
+    background-color: purple;
+}
+.navbar-toggler{
+    color: white;
+    background-color: lightyellow;
+}
+.nav-link, .navbar-brand{
+    color: white;
+    font-family: 'Trade Winds', cursive;
+}
+.nav-link:hover{
+    color: #fff;
+    background-color: black;
+    padding: 6px;
+    margin: -2px;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+footer{
+    text-align : center;
+    position: absolute-bottom;
+    color: #fff ;
+    background-color: purple ;
+    padding: 3px 0px 4px 0px;
+}
+#time{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 50px;
+}
+#time-money{
+    margin:0px 0px 0px auto;
+    padding: 0px;
+    color: #fff;
+    background-color:#ff6200;
+    font-family: times new roman;
+
+    max-height: 360px;
+    height: 360px;
+}
+#imag{
+    margin: 0px auto 0px 0px;
+    padding: 0px;
+}
+#haha{
+    background-image: url("C:\Users\gopi 009\Downloads\carts.jpg");
+    background-color: transparent;
+}

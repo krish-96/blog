@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<h4 class="card-header text-center mb-3">Contact Us page</h4>
+<div class="container-fluid">
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 offset-auto">
+		<div class="col">
+            <div class="card">
+                <h5 class="card-header text-center">Mail Us</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" name="" val="Submit" class="btn btn-primary btn-md">
+                </form>
+                <br>
+
+            </div>
+
+		</div>
+		<div class="col">
+            <div class="card">
+                <h5 class="card-header text-center">Our Office Address</h5>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2540.5137030570536!2d78.38467825612855!3d17.437219594841896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m1!1m0!5e0!3m2!1sen!2sin!4v1586945242635!5m2!1sen!2sin" width="90%" height="360" frameborder="0" style="border:3px groove green;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <br>
+
+            </div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% load static %}
+<link rel="stylesheet"  type="text/css" href="{% static 'css/index.css' %}" >
+<link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+<nav class="navbar navbar-expand-lg ">
+  <a class="navbar-brand" href="{% url 'blog:home' %}"> <img src="{% static 'images/krishnablog.png' %}" width="80px" height="40px"> Krishna Blog  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span style="color:black;" class="btn btn-sm">Menu</span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">All Blogs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:contactus' %}" tabindex="-1" aria-disabled="true">Contact Us</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          More
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">About Us</a>
+          <a class="dropdown-item" href="#">Our Office</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" >
+      <button class="btn btn-outline-warning btn-sm my-2 my-sm-0" type="submit"> <span style="font-family: 'Trade Winds', cursive;">Search</span> <i class="fa fa-search"> </i> </button>
+    </form>
+    &nbsp
+
+    <ul class="navbar-nav navbar-right mr-auto">
+       {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{user.username}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" href="#">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'blog:logout' %}">LogOut</a>
+        </div>
+      </li>
+       {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:signup' %}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:login' %}">LogIn</a>
+      </li>
+       {% endif %}
+
+    </ul>
+  </div>
+</nav>
