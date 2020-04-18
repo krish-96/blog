@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Authors List {% endblock title %}
+{% block content %}
+ <h3 class="card-header text-center mb-3 pb-2" id="posts-head"> Authors list</h3>
+
+{% if object_list %}
+    <div class="container ">
+        <div class="row">
+            {% for object in object_list %}
+                <div class="col col-12 col-sm-6 col-md-4 col-lg-4 p-2">
+                     <div class="card m-auto mt-5 mb-5" style="width: 18rem;">
+                         <h5 class="card-header text-center pt-3  " id="p-header"><span id="p-id"> <b>{{object.name|upper}}</b> </h5>
+                        {%if object.photo%}
+                        <img class="card-img-top" src="{{object.photo.url}}" alt='{{object.name}}' height="250px" width="250px">
+                        {% else %}
+                        <<img class="card-img-top" src="{% static 'images/new_user.png' %}" alt='{{object.name}}' height="226px" width="250px">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">{{object.name}}<br>{{object.dob}}</p>
+                            <a href="{% url 'blog:author' object.slug %}" class="btn btn-primary">More about {{object.name}}</a>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+
+            </div>
+        </div>
+        {% else %}
+        <div class="card-body text-center" >
+            <h4 class="alert" style="color:gold;"> <b><i> No authors yet!</i></b> </h4>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<br>
+{% if object_list %}
+<div class="text-center p-2 mb-0 pb-0" id="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" id="page">  <span>&laquo;  first</span></a>
+            <a href="?page={{ page_obj.previous_page_number }}" id="page">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" id="page">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" id="page">last <span>&raquo; </span></a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+<br>
+
+
+<br>
+{% endblock %}

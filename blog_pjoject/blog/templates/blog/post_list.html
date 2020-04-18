@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Posts List {% endblock title %}
+{% block content %}
+ <h3 class="card-header text-center mb-0 pb-0" id="posts-head">All posts up to date</h3>
+<div class="container ">
+    <div class="row">
+        {% if object_list %}
+        <div class="row row-col-md-1">
+            <div class="col col-12 ">
+                <div class="card  mt-3">
+                    {% for object in object_list %}
+                    <h5 class="card-header pt-3 pl-3 " id="p-header"> Post  : <b>{{object.title}}</b></h5>
+                        <div class="card-title pl-5 pt-3 mb-0 pb-0" id="p-title" >
+                        <h6>  Posted by <span id="pc-name"">{{object.creator}}</span> on <span id="p-date"">{{object.published_date}}</span>
+                        <br>Last update : <span id="p-date">{{object.updated_date|timesince}}</span> ago
+                        </h6>
+                        </div>
+                    <div class="card-body mb-0 pb-0 pt-2 mt-0" id="p-body">
+                        <div class="row">
+                            <div class="col col-sm-2 col-md-2">
+                                <img  src="{{object.post_pic.url}}" alt='{{object.name}}' width="100px" height="100px">
+                            </div>
+
+                        <div class="col col-9"> {{object.content|truncatewords:45}}
+                        </div>
+                            </div>
+
+                            <div class="text-right mr-5 pr-5 mb-4 pt-0" >
+                                <a href="{% url 'blog:post' object.slug %}" class="btn btn-info btn-sm" id="btn-post">Read More...</a>
+                            </div>
+                    </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% else %}
+           <div class="card-body text-center" >
+            <h4 class="alert" style="color:gold;"> <b><i> No authors yet!</i></b> </h4>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<br>
+{% if object_list %}
+<div class="text-center p-2 mb-0 pb-0" id="pagination">
+			    <span class="step-links">
+			        {% if page_obj.has_previous %}
+			            <a href="?page=1" id="page" >  <span >&laquo;  first</span></a>
+			            <a href="?page={{ page_obj.previous_page_number }}" id="page" >previous</a>
+			        {% endif %}
+			        <span class="current" >
+			            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+			        </span>
+			        {% if page_obj.has_next %}
+			            <a href="?page={{ page_obj.next_page_number }}" id="page" >next</a>
+			            <a href="?page={{ page_obj.paginator.num_pages }}" id="page" >last <span >&raquo; </span></a>
+			        {% endif %}
+			    </span>
+			</div>
+{% endif %}
+<br>
+{% endblock %}

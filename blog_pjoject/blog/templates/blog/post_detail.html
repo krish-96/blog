@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Post - {{object.title|title}} {% endblock title %}
+{% block content %}
+<div class="container" id="posts">
+    <div class="row" id="posts">
+        {% if object %}
+        <div class="row row-col-md-1">
+            <div class="col col-12 ">
+                <div class="card mt-5">
+                    <h3 class="card-header text-center" id="p-header">{{object.title|upper}}</h3>
+                    <div class="card-body pl-5" id="p-body">
+                        <h6 id="p-title">  Posted by <span id="pc-name">{{object.creator}}</span> on <span id="p-date">{{object.published_date}}</span>
+                        <br>Last update : <span id="p-date">{{object.updated_date|timesince}}</span>  ago
+                        </h6>
+                        <div id="p-title" class="mb-0 pb-0 mt-0 pt-0">
+                            <div class="text-center mt-3">
+                                <img src="{{object.post_pic.url}}" alt="{{object.title}}" >
+                            </div>
+                            <p > {{object.content|linebreaks}} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="card p-0 m-0 bg-light" id="btn-posts">
+                        <a href="{% url 'blog:posts' %}" class="btn btn-primary btn-sm">See all posts</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card-body text-center" >
+            <h4 class="alert" style="color:gold;"> <b><i> Something is wrong!</i></b> </h4>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

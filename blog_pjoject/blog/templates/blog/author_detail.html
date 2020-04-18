@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+
+{% block title %} Author - {{object.name|title}} {% endblock title %}
+{% block content %}
+<div class="container" >
+    <div class="row" >
+        {% if object %}
+        <div class="row ">
+            <div class="col col-md-12 ">
+                <div class="card mt-5">
+
+
+                    <div class="card-body pl-0 pr-0 pt-0 " >
+                        {% if object.photo %}
+                        <img src="{{object.photo.url}}" alt="{{object.name}}" height="300px" width="300px">
+                        {% else %}
+                        <img src="{% static 'images/new_user.png' %}" alt="{{object.name}}" height="300px" width="300px">
+                        {% endif %}
+                        <h6 id="p-title">  Posted by <span id="pc-name">{{object.name}}</span> on <span id="p-date">{{object.joined_date}}</span>
+                        <br>Last update : <span id="p-date">{{object.joined_date|timesince}}</span>  ago
+                        </h6>
+                        <div style="color:black; background-color:linen;" class="mb-0 pb-0 mt-0 pt-0">
+
+                            <p > {{object.email}} </p>
+                            <p > {{object.address|linebreaks}} </p>
+                            <p > {{object.phone_no}} </p>
+                            <p > {{object.dob}} </p>
+                        </div>
+
+                    </div>
+
+                    <div class="card p-0 m-0 bg-light" id="btn-posts">
+                        <a href="{% url 'blog:authors' %}" class="btn btn-primary btn-sm">See all authors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card-body text-center" >
+            <h4 class="alert" style="color:gold;"> <b><i> Something is wrong!</i></b> </h4>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}
