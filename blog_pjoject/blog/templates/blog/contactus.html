@@ -4,13 +4,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 {% block content %}
-<h4 class="card-header text-center" id="mailus"> Contact : <span
-        style="font-family: 'Trade Winds', cursive; color:gold;">Krishna Blog </span></h4>
+
 <div class="container-fluid ">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 offset-auto mb-5">
-        <div class="col">
-            <div class="card text-canter" id="mailus">
-                <h5 class="card-header text-center">Mail Us</h5>
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-5">
+            <div class="card text-canter pl-5" id="mailus">
+                <h5 class="card-header text-center"> <span style="font-weight:900;font-family: 'Girassol', cursive;letter-spacing:2px;">Mail Us</span> </h5>
                 <div class="card-body text-left pl-5 ">
                     <form method="POST" class="form-group">
                         {% csrf_token %}
@@ -23,7 +22,7 @@
         </div>
         <div class="col">
             <div class="card" id="mailus">
-                <h5 class="card-header text-center mb-5">Our Office Address</h5>
+                <h5 class="card-header text-center mb-5"> <span style="font-weight:900;font-family: 'Girassol', cursive;letter-spacing:2px;">Our Office Address</span> </h5>
                 <div class="'card-body text-right pr-5 mr-5">
                     <div class="card-title pl-5 ml-5">
                         <address class="text-left ml-5 pl-5">
